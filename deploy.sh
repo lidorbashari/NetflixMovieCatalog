@@ -1,3 +1,18 @@
 #!/bin/bash
 
-# TODO your deploy script implementation...
+#!/bin/bash
+
+# Navigate to the app directory
+cd ~/NetflixMovieCatalog
+
+# Pull the latest changes from the repository
+git pull origin main
+
+# Activate the Python virtual environment
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Restart the Flask service
+sudo systemctl restart netflixmoviecatalog.service
