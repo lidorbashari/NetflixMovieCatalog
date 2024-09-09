@@ -19,7 +19,33 @@ jobs:
 
       - name: SSH to EC2 instance
         run: |
-          echo "$SSH_PRIVATE_KEY" > mykey.pem
+          echo "-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAnELJDY9O8YiObE+LAi4v/Fa+83BkpZRf6izdJPHOoYie8yeF
+Csqy83B1xceQPUO3QnfmbN2Fl16TiUho7Oqg0AaGpCXKf/WkzwwMnAC77Iokyvhj
+muWW/0+wN8BRqB+MPs8Xog581J53p9iOwisoDsavVqPgp/tUduTVkT/jMpATofOX
+sNSioDAIQIyHBBSED/Aj60f0jzP7MfG+nz00rwt/U46Zy2FoYJQmSih22EqpaFPx
+oaqoxB1VBdeAK7ZBlDo02OgThv1QUujaYwPKzU9auQKgOvs6hLKmIys+hQJwaHYY
+OMG+pCmTutQ5S/VcY24di9/o3mB9nivSvUPV7QIDAQABAoIBABivUDWNKwpq6Rzh
+H/OTOk9hoL6yRaQGoXRL7A93B45rF7kPyCuhQ83DOUeqM/YJqXydllAiWoVEEoiA
+YNr0Yb0bGs/5jFjUhFmU7LUERKukUxWhUZLZrBXfD9Zu0jd97FjLvE8EfOHVus9Q
+HZU83hIffvlv4ACJaplxou9UKV8GNmwjxEQwLqSM3OnVUo4SQcWzecLcwahz3qpw
+rYCdAiYVfZ/WMU6xyH/iZVMntCgHiLjCPD5inE/tK57GqilZi3ZwdzDzVo80hbIh
+STQypD1+U2+FvqXyENbf6dVXrWbWlXkGei8EYEqfCy9ZmRPSmytSPKvBW+4QrcU0
+HMOpheECgYEAzcElht84r0Pb3VZuEx3d/gzjba8ufZe/lFSztg6wNVWs+NxrCflA
+KGIOuuKawYzl0eS2tcVELit/vlLMZAvQMPKzGFw7dqxeOpydbYNagJ05pN0LdMOc
+v63TXq/4AP9rmn4wWUkeIW2w/jmeWgrSQBkCm7u8WPrDeVBhVmujVTUCgYEAwmuE
+/KrTcUcgCAg0vzusssThJ+v4g+sgpekm/TuAZHsUy9EgHwS4J6VukQaMXX68Lyog
+tTsohSqEuXE8ychr3jzKjSIvQh3gkJCpDwWyCElkMjDmFEFSl2aRUlkssacFSLVI
+jz/9C2WeDOb+IGZopLZLXKxO/Z4ddB90iO9trNkCgYARRtme1JmO5fTNRheiFUzx
+qyVhrWcK9rYIf4BDlkIniFUo5GE8iihf+7Pe724tOGaH1FufMbxC4DYuxgcRk4hc
+w9RUBFKd6WVUKJhzfKcZy5nuhP0UReSgl7j65228r7XaWCQ5KxGTnwFQp4fraaMz
+7KWya/YpxoypYB18QzeIzQKBgQC+LMI3DToq8jHI6Y3/CXZSn/bGQDIliBe1cq0q
+w8tBfovHGtbawJkKXu4aeldPFSsqz4CTBj0KlZ6ibrvRfXTWPIy9JRUpDWSexII6
+KY4OQQv7dI16frM1WaUI8iWf2Qp4JqvFRAhX35yMbl9ifgoaJB7vlbTmrIWPEz3A
+vMOBcQKBgCWRYkCxdvlmzCTryQBQnUaWUCP0C44myxhoib5WbMwH6hVc7su98MHA
+DudW15AUjQicdS6jsqHsoAD7wPe/YUvHAL65h7PGqtO6y+VrjjiUGJHQxkHu2XOo
+kD8IWB+krp1Um17QSQ+wrcMVG0ub9sGhXnOyHdy7NWmtDeVpODlw
+-----END RSA PRIVATE KEY-----" > mykey.pem
           chmod 400 mykey.pem
           
           # Copy the files from the current wrok dir into the EC2 instance, under `~/app`.
