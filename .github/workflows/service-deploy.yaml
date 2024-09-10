@@ -23,7 +23,11 @@ jobs:
           chmod 400 mykey.pem
           
           # Copy the files from the current wrok dir into the EC2 instance, under `~/app`, if app are find remove and create new dir
-            ssh -i mykey.pem -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP "rm -r ~/app && mkdir app"
+            ssh -i mykey.pem -o StrictHostKeyChecking=no ubuntu@$EC2_PUBLIC_IP "if [ -d "app" ]; then \
+          rm -r ~/app && mkdir app \
+          else
+          mkdir app \ 
+          fi"
           scp -i mykey.pem -o StrictHostKeyChecking=no -r * ubuntu@$EC2_PUBLIC_IP:~/app
           
           # Connect to your EC2 instance and execute the `deploy.sh` script (this script is part of the repo files). 
