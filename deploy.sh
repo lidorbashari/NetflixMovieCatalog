@@ -3,7 +3,7 @@
 #!/bin/bash
 
 # Navigate to the app directory
-cd ~/NetflixMovieCatalog
+cd ~/app
 
 # Pull the latest changes from the repository
 git pull origin main
