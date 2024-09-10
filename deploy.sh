@@ -8,6 +8,9 @@ cd ~/NetflixMovieCatalog
 # Pull the latest changes from the repository
 git pull origin main
 
+# install venv
+python3 -m venv venv
+
 # Activate the Python virtual environment
 source venv/bin/activate
 
