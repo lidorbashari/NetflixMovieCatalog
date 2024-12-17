@@ -17,7 +17,7 @@ jobs:
           DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}
           if [ -z $DOCKER_USERNAME ] || [ -z $DOCKER_PASSWORD ]; then
-            echo "your username and your password should be there" 
+            echo "your username and your password should be there!" 
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
           IMAGE_NAME=netflix-movie-catalog:${{ github.run_number }}
