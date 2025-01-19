@@ -23,7 +23,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
         run: |
           if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_PASSWORD" ]; then
-            echo "Your DockerHub username and password should be set as secrets!"
+            echo "Your DockerHub username and password should be set as secrets!!"
             exit 1
           fi
           
@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: lidorbashari/NetflixInfra
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           path: ./NetflixInfra
           ref: main
 
