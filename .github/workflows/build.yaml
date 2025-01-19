@@ -5,12 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build and push image
         env:
@@ -27,17 +30,28 @@ jobs:
           IMAGE_NAME=$DOCKER_USERNAME/netflix-movie-catalog:${{ github.run_number }}
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
+      - name: Checkout infrastructure repo
+        uses: actions/checkout@v3
+        with:
+          repository: lidorbashari/NetflixInfra.git  # TODO change me
+          token: ${{ secrets.REPO_TOKEN }}  # The GITHUB_TOKEN secret is a GitHub access token.
+          path: ./NetflixInfra
+          ref: main
 
-  TriggerDeployment:
-    runs-on: ubuntu-latest
-    needs: Build
-    steps:
-     - name: Trigger the deployment workflow
-       run: |
-         IMAGE_NAME=netflix-movie-catalog:${{ github.run_number }}
-         curl -X POST \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_ACCESS_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          -d "{\"ref\": \"main\", \"inputs\": {\"service_name\": \"netflix-movie-catalog\", \"image\": \"$IMAGE_NAME\"}}" \
-          https://api.github.com/repos/YOUR_GITHUB_USERNAME/NetflixInfra/actions/workflows/YOUR_WORKFLOW_ID/dispatches
+      - name: Update YAML manifests
+        run: |
+          cd ./NetflixInfra/k8s/NetflixFronted
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflix-movie-catalog:${{ github.run_number }}
+           yq e '.spec.template.spec.containers[0].image = \"$IMAGE_NAME\"" -i deployment.yaml
 
+
+
+      - name: Commit and Push changes
+        run: |
+          cd ./NetflixInfra
+          git config --local user.email "github@action"
+          git config --local user.name "auto-update"
+          git add k8s/NetflixMovieCatalog/deployment.yaml
+          git commit -m "Update image to $IMAGE_NAME"
+          git push origin main
