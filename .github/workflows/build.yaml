@@ -17,8 +17,8 @@ jobs:
 
       - name: Build and push image
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          DOCKER_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD=${{ secrets.DOCKERHUB_PASSWORD }}
         run: |                 
           if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_PASSWORD" ]; then
             echo "Your DockerHub username and password should be set as secrets!"
