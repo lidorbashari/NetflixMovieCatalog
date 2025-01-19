@@ -44,7 +44,7 @@ jobs:
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflix-movie-catalog:${{ github.run_number }}
           cd ./NetflixInfra/k8s/NetflixFronted
           sudo apt-get install -y yq
-          yq e ".spec.template.spec.containers[0].image = \"$IMAGE_NAME\"" -i deployment.yaml
+           yq e ".spec.template.spec.containers[0].image = \"$IMAGE_NAME\"" -i deployment.yaml
 
       - name: Commit and Push changes
         run: |
