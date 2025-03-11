@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh '''
                     ls
-                    echo hi lidor
+                    echo hi lidori
                     # build an image
                     docker build -t netflix-front .
                 '''
