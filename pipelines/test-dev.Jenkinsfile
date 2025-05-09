@@ -33,7 +33,7 @@ pipeline {
                 script {
                     echo "Running linting with flake8..."
                     sh '''
-                        source ${VENV_DIR}/bin/activate
+                        . ${VENV_DIR}/bin/activate
                         flake8 .
                     '''
                 }
@@ -45,7 +45,7 @@ pipeline {
                 script {
                     echo "Running tests with pytest..."
                     sh '''
-                        source ${VENV_DIR}/bin/activate
+                        . ${VENV_DIR}/bin/activate
                         pytest --maxfail=1 --disable-warnings -q
                     '''
                 }
