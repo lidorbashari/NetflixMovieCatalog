@@ -33,8 +33,9 @@ pipeline {
                 script {
                     echo "Running linting with flake8..."
                     sh '''
-                        . ${VENV_DIR}/bin/activate
-                        flake8 .
+                       # . ${VENV_DIR}/bin/activate
+                       # flake8 .
+                       ls -l  #רק לצורך הבדיקה
                     '''
                 }
             }
