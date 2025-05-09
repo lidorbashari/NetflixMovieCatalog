@@ -20,7 +20,7 @@ pipeline {
                     echo "Setting up virtual environment..."
                     sh '''
                         python3 -m venv ${VENV_DIR}
-                        source ${VENV_DIR}/bin/activate
+                        . ${VENV_DIR}/bin/activate
                         pip install --upgrade pip
                         pip install -r requirements-dev.txt
                     '''
@@ -45,7 +45,7 @@ pipeline {
                 script {
                     echo "Running tests with pytest..."
                     sh '''
-                        . ${VENV_DIR}/bin/activate
+                        source ${VENV_DIR}/bin/activate
                         pytest --maxfail=1 --disable-warnings -q
                     '''
                 }
